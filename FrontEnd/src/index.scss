@@ -1,0 +1,87 @@
+@import '../src/assets/scss/var.scss';
+@import '../src/assets/scss/styles.scss';
+
+body {
+  color: $app-text-color;
+  font-size: 18px;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Trebuchet MS", "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+h2 {
+  margin-bottom: 48px;
+  text-align: center;
+}
+h3{
+  margin-bottom: 48px;
+  text-align: center;
+}
+.g-primary-text {
+   color: $app-primary-text;
+}
+.g-secondary-text {
+  color: $app-secondary-text;
+  font-size: 15px;
+}
+.g-null-info {
+  font-style: italic;
+  text-align: center;
+}
+.g-loader-container {
+   position: fixed;
+   top: 0;
+   left: 0;
+   height: 100vh;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color:rgba(62, 62, 62, 0.8);
+   z-index: 100;
+}
+.g-loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid dimgrey;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 1s linear infinite; /* Safari */
+  animation: spin 1s linear infinite;
+}
+.g-loader-show {
+    display: flex;
+}
+.g-loader-hide {
+    display: none;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.g-box-shadow1 {
+  -webkit-box-shadow: -10px 14px 6px -4px rgba(133,130,133,1);
+  -moz-box-shadow: -10px 14px 6px -4px rgba(133,130,133,1);
+  box-shadow: -10px 14px 6px -4px rgba(133,130,133,1);
+}
+.g-box-shadow2 {
+    -webkit-box-shadow: 0px 11px 7px -6px rgba(133,130,133,0.79);
+  -moz-box-shadow: 0px 11px 7px -6px rgba(133,130,133,0.79);
+  box-shadow: 0px 11px 7px -6px rgba(133,130,133,0.79);
+}
