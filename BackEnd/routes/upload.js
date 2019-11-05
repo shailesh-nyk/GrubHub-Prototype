@@ -3,6 +3,7 @@ var router = express.Router();
 const multer = require('multer');
 var BuyerModel = require('../models/buyer');
 var SellerModel = require('../models/seller');
+
 const fileFilter = (req, file, cb) => {
     if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/jpg' || file.mimetype === 'image/png'){
         cb(null, true);

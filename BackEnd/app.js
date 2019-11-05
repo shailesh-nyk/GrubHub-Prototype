@@ -32,7 +32,8 @@ app.use(function(req, res, next) {
 });
 
 //connect to MongoDB
-mongoose.connect('mongodb://localhost/grubhubMongo', { useNewUrlParser: true , useUnifiedTopology: true });
+var mongoDBServer = "mongodb+srv://snayakk:Ccompiler7!@test-cluster-vt9ln.mongodb.net/grubhub?retryWrites=true&w=majority";
+mongoose.connect(mongoDBServer, { useNewUrlParser: true , useUnifiedTopology: true });
 
 // Set up middleware
 app.use(passport.initialize());

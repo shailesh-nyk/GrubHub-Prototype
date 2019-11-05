@@ -305,53 +305,55 @@ class Menu extends React.Component {
                     </div>
                 )
                 let sections = [];
-                Object.keys(this.state.display_items).forEach( key => {
-                    let sectionHeader = (
-                        <div className="g-section-head"> {key.toUpperCase()}
-                            <div className="g-menu-action">
-                                <span title='Edit section' className="fa fa-pencil" data-toggle="modal" data-target="#editsectionModal"
-                                    onClick={() => this.selectSection(key)}></span>
-                                <span title='Delete section' className="fa fa-trash-o" data-toggle="modal" data-target="#deletesectionModal"
-                                onClick={() => this.selectSection(key)}></span>
-                            </div>
-                        </div>)
-                    let items = [];
-                    if(this.state.display_items[key].length > 0) {
-                    this.state.display_items[key].forEach( item => {
-                        items.push(
-                            <div className="g-menu-row">
-                                <div className="g-menu-image">
-                                        <img className="g-image" src={config.base + item.image} alt="NO DISPLAY"/>
-                                </div>
-                                <div className="g-menu-desc">
-                                    <div className="g-menu-desc-title">{item.name}</div>
-                                    <div className="g-menu-desc-details">{item.description}</div>
-                                </div>
-                                <div className="g-menu-price">
-                                        Price<br/>
-                                        <b>${item.price}</b>
-                                </div>
+                if(this.props.sectionsFetched && this.props.itemsFetched) {
+                    Object.keys(this.state.display_items).forEach( key => {
+                        let sectionHeader = (
+                            <div className="g-section-head"> {key.toUpperCase()}
                                 <div className="g-menu-action">
-                                        <span title='Edit item details' className="fa fa-pencil"  
-                                        onClick={() => this.selectItem(item)} data-toggle="modal" data-target="#edititemsModal"></span>
-                                        <span title='Delete item' className="fa fa-trash-o" 
-                                        onClick={() => this.selectItem(item)} data-toggle="modal" data-target="#deleteitemModal"></span>
+                                    <span title='Edit section' className="fa fa-pencil" data-toggle="modal" data-target="#editsectionModal"
+                                        onClick={() => this.selectSection(key)}></span>
+                                    <span title='Delete section' className="fa fa-trash-o" data-toggle="modal" data-target="#deletesectionModal"
+                                    onClick={() => this.selectSection(key)}></span>
                                 </div>
-                            </div>
+                            </div>)
+                        let items = [];
+                        if(this.state.display_items[key].length > 0) {
+                        this.state.display_items[key].forEach( item => {
+                            items.push(
+                                <div className="g-menu-row">
+                                    <div className="g-menu-image">
+                                            <img className="g-image" src={config.base + item.image} alt="NO DISPLAY"/>
+                                    </div>
+                                    <div className="g-menu-desc">
+                                        <div className="g-menu-desc-title">{item.name}</div>
+                                        <div className="g-menu-desc-details">{item.description}</div>
+                                    </div>
+                                    <div className="g-menu-price">
+                                            Price<br/>
+                                            <b>${item.price}</b>
+                                    </div>
+                                    <div className="g-menu-action">
+                                            <span title='Edit item details' className="fa fa-pencil"  
+                                            onClick={() => this.selectItem(item)} data-toggle="modal" data-target="#edititemsModal"></span>
+                                            <span title='Delete item' className="fa fa-trash-o" 
+                                            onClick={() => this.selectItem(item)} data-toggle="modal" data-target="#deleteitemModal"></span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    } else {
+                        items.push(
+                            <div className="g-menu-row g-empty-alert-text"> You have no items in this section. Go on and add some!!!</div>
                         )
-                    })
-                } else {
-                    items.push(
-                        <div className="g-menu-row g-empty-alert-text"> You have no items in this section. Go on and add some!!!</div>
-                    )
+                    }
+                    sections.push(
+                        <div class="g-section" id={this.props.sections.find(x => x.section_name === key.toLowerCase().trim())._id}>
+                            {sectionHeader}
+                            {items}
+                        </div>
+                    )   
+                    });
                 }
-                sections.push(
-                    <div class="g-section" id={this.props.sections.find(x => x.section_name === key.toLowerCase().trim())._id}>
-                        {sectionHeader}
-                        {items}
-                    </div>
-                )   
-                });
                 array.push(
                     <div id="menu-container">
                         {sections}

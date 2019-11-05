@@ -4,7 +4,7 @@ var BuyerModel = require('./../models/buyer');
 var SellerModel = require('./../models/seller');
 const bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-
+var kafka = require('../kafka/client');
 
 router.get('/', function(req, res, next) {
   res.send('Welcome to GrubHub API layer');
@@ -76,57 +76,19 @@ router.post('/login', function(req, res, next) {
 
 
 router.post('/register-seller', function(req, res, next) {
-  let newUser = new SellerModel({
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-      address: req.body.rest_address,
-      zipcode: req.body.rest_zipcode,
-      phone: req.body.phone,
-      rest_name: req.body.rest_name,
-      cuisine: req.body.cuisine.toLowerCase(),
-  })
-  newUser.save(function (err, resp) {
-    if(err) {
-          res.send({
-              success: false,
-              msg: err.message,
-              msgDesc: err
-          })
-    } else{
-      res.send({
-        success: true,
-        msg: "Registered you successfully! Your journey to success has begun!",
-        msgDesc: resp
-      }) 
+    let request = {
+      body: req.body,
+      message: 'REGISTERSELLER'
     }
-   });
+    kafka.make_request('seller', request , res);
 })
 
 router.post('/register-buyer', function(req, res, next) {
-    let newUser = new BuyerModel({
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password,
-        address: req.body.address,
-        zipcode: req.body.zipcode,
-        phone: req.body.phone,
-    })
-    newUser.save(function (err, resp) {
-      if(err) {
-            res.send({
-                success: false,
-                msg: err.message,
-                msgDesc: err
-            })
-      } else{
-        res.send({
-          success: true,
-          msg: "Registered successfully! You will not go hungry anymore!!",
-          msgDesc: resp
-        }) 
-      }
-    });
+    let request = {
+      body: req.body,
+      message: 'REGISTERBUYER'
+    }
+    kafka.make_request('buyer', request , res);
 })
 
 

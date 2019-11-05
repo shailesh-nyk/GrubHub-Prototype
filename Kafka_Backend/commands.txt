@@ -1,1 +1,24 @@
+//start zookeeper
+
 zkserver
+
+// START KAFKA SERVER
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+//CREATE TOPICS
+
+kafka-topics.bat --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic buyer
+
+or
+
+RUN grubhub-topic.bat from KAFKA/bin/windows
+
+//DELETE TOPICS
+CALL kafka-topics.bat --zookeeper localhost:2181 --delete --topic chat
+
+//STOP KAFKA SERVER
+.\bin\windows\kafka-server-stop.bat
+
+//LIST ALL TOPICS
+.bin\windows\kafka-topics.bat --list --zookeeper localhost:2181

@@ -271,6 +271,7 @@ class SellerHome extends React.Component {
                 message: document.getElementById("new-message").value.trim()
             }
         }
+        document.getElementById("new-message").value = "";
         this.props.sendMessage(req_body);
     }
 }

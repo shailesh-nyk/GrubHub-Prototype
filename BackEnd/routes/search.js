@@ -1,49 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var SellerModel = require('../models/seller');
+var kafka = require('../kafka/client');
 
-
-router.get('/', (req, res, next) => {
-    let search = {
-      $or: [
-        { "items.name" : { "$regex": req.query.searchKey, "$options": "i" } },
-        { rest_name : { "$regex": req.query.searchKey, "$options": "i" } }
-      ]
+router.get('/', (req, res) => {
+    let request = {
+      body: req.query,
+      message: 'SEARCHRESTS'
     }
-    SellerModel.find(search, function(err, result) {
-        if(err) {
-          res.send({
-              success: false,
-              msg: "Something went wrong",
-              content: err
-          })
-        } else {
-          res.send({
-              success: true,
-              msg: "Got search results" ,
-              content: result
-          }) 
-        }
-    })
+    kafka.make_request('buyer', request , res);
 });
 
 router.get('/cuisine', (req, res, next) => {  
-  SellerModel.find().distinct("cuisine", function(err, results) {
-        if(err) {
-          res.send({
-              success: false,
-              msg: "Something went wrong",
-              content: err
-          })
-       } else {
-            res.send({
-              success: true,
-              msg: "Got cuisine list" ,
-              content: results
-          }) 
-      } 
-  });
+    let request = {
+      body: req.query,
+      message: 'GETCUISINELIST'
+    }
+    kafka.make_request('buyer', request , res);
 });
-
 
 module.exports = router;

@@ -38,7 +38,7 @@ class BuyerOrderHistory extends React.Component {
                     <div className="modal-content">
                     <div className="modal-header">
                         <h5 className="modal-title" id="chatModalTitle">Chat</h5>
-                        <span className="g-icon g-order-refresh fa fa-refresh" onClick={(e) => this.getMessages(this.state.selectedOrder)}></span>
+                        <span className="g-icon g-order-refresh fa fa-refresh" onClick={(e) => this.getMessages(this.state.selectedOrder)} style={{left: "80px",top: "20px"}}></span>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -70,7 +70,7 @@ class BuyerOrderHistory extends React.Component {
               <div className="card-header" id="active-orders" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                         Active Orders
               </div>
-              <span className="g-icon g-order-refresh fa fa-refresh" onClick={(e) => this.refresh(e)} style={{left: "80px",top: "20px"}}></span>
+              <span className="g-icon g-order-refresh fa fa-refresh" onClick={(e) => this.refresh(e)}></span>
               <div id="collapseOne" className="collapse show" aria-labelledby="active-orders" data-parent="#accordionOrders">
                  { this.state.activeOrders.length > 0 ? 
                        ( <div className="card-body">
@@ -242,6 +242,7 @@ class BuyerOrderHistory extends React.Component {
                 message: document.getElementById("new-message").value.trim()
             }
         }
+        document.getElementById("new-message").value = "";
         this.props.sendMessage(req_body);
     }
 }
