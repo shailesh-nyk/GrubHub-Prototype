@@ -19,3 +19,4 @@
 
 ### System Architecture
 
+![System Architecture](https://github.com/shailesh-nyk/GrubHub-Prototype/blob/master/sys_arch.png)
