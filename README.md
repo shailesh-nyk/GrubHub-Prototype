@@ -5,17 +5,17 @@
 ### Roles
 
 1. Customer
-* Search
-* Cart
-* Place orders
-* Track orders
-* Chat with restaurant owner
+&nbsp;&nbsp;* Search
+&nbsp;&nbsp;* Cart
+&nbsp;&nbsp;* Place orders
+&nbsp;&nbsp;* Track orders
+&nbsp;&nbsp;* Chat with restaurant owner
 
 2. Restaurant owner
-* Manage menu - Add/Remove sections, Add/remove Items, Edit items(price, picture etc.)
-* Track orders
-* Update order status
-* Chat with customer
+&nbsp;* Manage menu - Add/Remove sections, Add/remove Items, Edit items(price, picture etc.)
+&nbsp;* Track orders
+&nbsp;* Update order status
+&nbsp;* Chat with customer
 
 ### System Architecture
 
